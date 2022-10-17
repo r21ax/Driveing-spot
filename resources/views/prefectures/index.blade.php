@@ -12,9 +12,11 @@
         
         @section('content')
         <h1>新着順</h1>
-        <a href='/posts/create'>create</a>
+        
+        <div div style="width: 150px; margin-left: auto;"><button type="submit"><a href='/posts/create'>投稿</a></button></div>
         <div class='posts'>
             @foreach ($posts as $post)
+            <a>_______________________________________________________________________________________</a>
                 <div class='post'>
                     <h2 class='title'>
                         <a href="/posts/{{ $post->id }}">{{ $post->title }}</a>

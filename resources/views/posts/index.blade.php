@@ -12,24 +12,29 @@
         
         @section('content')
         {{Auth::user()->name}}
-        <h1>新着順</h1>
-        <button type="submit"><a href='/posts/create'>投稿</a></button>
+        <div style="text-align:center;">
+            <h1 >新着順</h1>
+        </div>
+        <div div style="width: 150px; margin-left: auto;"><button type="submit"><a href='/posts/create'>投稿</a></button></div>
         <div class='posts'>
+        <div class="col-md-8 col-md-offset-2">
             @foreach ($posts as $post)
+            <a>_______________________________________________________________________________________</a>
                 <div class='post'>
                     <h2 class='title'>
-                        <a href="/posts/{{ $post->id }}">{{ $post->title }}</a>
+                         <a href="/posts/{{ $post->id }}">{{ $post->title }}</a>
+
                     </h2>
-                    <h3 class='prefecture_id'>
+                    <h5 class='prefecture_id'>
                       <a href="/prefectures/{{ $post->prefecture->id }}">{{ $post->prefecture->prefecture }}</a>
-                    </h3>
+                    </h5>
                     
                     <img src="{{ $post->image }}" width="25%">
                     <p class='comment'>{{ $post->comment }}</p>
                     
                     <!--いいね機能-->
                      <div class="col-md-3">
-                        <form action="{{ route('dislikes', $post) }}" method="POST">
+                        <form action="{{ route('unlikes', $post) }}" method="POST">
                          @csrf
                          <input type="submit" value="&#xf164;取り消す" class="fas btn btn-danger">
                         </form>
@@ -40,10 +45,11 @@
                     　    <input type="submit" value="&#xf164;いいね" class="fas btn btn-success">
                     　  </form>
                      </div>
-                    
-                </div>
                         
+                </div>
+                
             @endforeach
+        </div>
         </div>
         <div class='paginate'>
             {{ $posts->links() }}

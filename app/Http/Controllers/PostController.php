@@ -16,6 +16,7 @@ class PostController extends Controller
     public function index(Post $post)
     {
         return view('posts/index')->with(['posts' => $post->getPaginateByLimit()]);
+        
     }
     
     public function show(Post $post)
@@ -52,5 +53,34 @@ class PostController extends Controller
         return redirect('/');
     }
     
+     public function __construct()
+     {
+         $this->middleware(['auth', 'verified'])->only(['like', 'unlike']);
+     }
+     public function like($id)
+     {
+         Like::create([
+         'post_id' => $id,
+         'user_id' => Auth::id(),
+         ]);
+         
+         session()->flash('success', 'You Liked the Post.');
 
+         return redirect()->back();
+     }
+
+  /**
+   * 引数のIDに紐づくリプライにUNLIKEする
+   *
+   * @param $id リプライID
+   * @return \Illuminate\Http\RedirectResponse
+   */
+    public function unlike($id)
+    {
+       $like = Like::where('post_id', $id)->where('user_id', Auth::id())->first();
+       $like->delete();
+       session()->flash('success', 'You Unliked the Post.');
+       return redirect()->back();
+  }
+   
 }    

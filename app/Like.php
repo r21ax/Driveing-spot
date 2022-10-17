@@ -6,9 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Like extends Model
 {
-    public function posts()//いいね機能
+    public function likes()
     {
-        return $this->belongsToMany('App\Post');
+        return $this->belongsToMany('App\Post')->withTimestamps();
     }
-    
 }

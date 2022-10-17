@@ -14,9 +14,9 @@
         <h1 class="title">
             {{ $post->title }}
         </h1>
-        <h3 class='prefecture_id'>
+        <h5 class='prefecture_id'>
              <a href="/prefectures/{{ $post->prefecture->id }}">{{ $post->prefecture->prefecture }}</a>
-        </h3>
+        </h5>
         <img src="{{ $post->image }}" width="35%">
         
         <div class="content">
@@ -24,6 +24,7 @@
                 <h3>コメント</h3>
                 <p>{{ $post->comment }}</p>
             </div>
+            <p class='updated_at'>{{ $post->updated_at }}</p>
         </div>
         <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post" style="display:inline">
             @csrf
@@ -35,4 +36,5 @@
         </div>
         @endsection
     </body>
+    
 </html>
