@@ -1,4 +1,5 @@
 <?php
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,6 +11,9 @@
 |
 */
 
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Route::get('/', 'PostController@index')->middleware('auth');
 Route::get('/prefectures/{prefecture}', 'PrefectureController@index');
@@ -17,10 +21,15 @@ Route::get('/posts/create', 'PostController@create');
 Route::get('/posts/{post}', 'PostController@show');
 Route::post('/posts', 'PostController@store');
 Route::delete('/posts/{post}', 'PostController@delete');
+Route::get('/prefectures/{prefecture}', 'PrefectureController@index');
+
+Route::get('result', 'ResultController@currentLocation')->name('result.currentLocation');
+
 
 Route::post('posts/{post}/likes', 'LikeController@store')->name('likes');
-Route::post('posts/{post}/dislikes', 'LikeController@destroy')->name('dislikes');
+Route::post('posts/{post}/unlikes', 'LikeController@destroy')->name('unlikes');
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/map', 'PostController@view');
