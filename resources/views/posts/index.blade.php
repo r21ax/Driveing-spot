@@ -34,19 +34,17 @@
                     <p class='comment'>{{ $post->comment }}</p>
                     
                     <!--いいね機能-->
-                     <div class="row justify-content-center">
-                        <div class="col-md-3">
-                            <form action="{{ route('favorites', $post->users()->attach(Auth::id())) }}" method="POST">
-                                @csrf
-                                <input type="submit" value="&#xf164;いいね" class="fas btn btn-success">
-                            </form>
-                        </div>
-                        <div class="col-md-3">
-                            <form action="{{ route('unfavorites', $post) }}" method="POST">
-                                <input type="submit" value="&#xf164;いいね取り消す" class="fas btn btn-danger">
-                            </form>
-                        </div>
-                    </div>
+                     <div class="col-md-3"> 
+                      <form action="{{ route('favorites', $post) }}" method="POST">
+                          @csrf
+                          <input type="submit" value="&#xf164;いいね" class="fas btn btn-success">
+                      </form>
+                     </div>
+                     <div class="col-md-3">
+                      <form action="{{ route('unfavorites', $post) }}" method="POST">
+                          @csrf
+                          <input type="submit" value="&#xf164;取り消す" class="fas btn btn-danger">
+                      </form>
                         
                 </div>
                 
