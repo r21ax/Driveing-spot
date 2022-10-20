@@ -25,26 +25,26 @@
                          <a href="/posts/{{ $post->id }}">{{ $post->title }}</a>
 
                     </h2>
+                    <!--都道府県表示-->
                     <h5 class='prefecture_id'>
                       <a href="/prefectures/{{ $post->prefecture->id }}">{{ $post->prefecture->prefecture }}</a>
                     </h5>
-                    
+                    <!--画像、コメント表示-->
                     <img src="{{ $post->image }}" width="25%">
                     <p class='comment'>{{ $post->comment }}</p>
                     
                     <!--いいね機能-->
-                     <div class="col-md-3">
-                        <form action="{{ route('unlikes', $post) }}" method="POST">
-                         @csrf
-                         <input type="submit" value="&#xf164;取り消す" class="fas btn btn-danger">
-                        </form>
-                     </div>
                      <div class="col-md-3"> 
-                        <form action="{{ route('likes', $post) }}" method="POST">
-                    　    @csrf
-                    　    <input type="submit" value="&#xf164;いいね" class="fas btn btn-success">
-                    　  </form>
+                      <form action="{{ route('favorites', $post) }}" method="POST">
+                          @csrf
+                          <input type="submit" value="&#xf164;いいね" class="fas btn btn-success">
+                      </form>
                      </div>
+                     <div class="col-md-3">
+                      <form action="{{ route('unfavorites', $post) }}" method="POST">
+                          @csrf
+                          <input type="submit" value="&#xf164;取り消す" class="fas btn btn-danger">
+                      </form>
                         
                 </div>
                 

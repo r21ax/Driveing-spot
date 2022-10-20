@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Post;
-use Auth;
 
 use Illuminate\Http\Request;
+use App\Post;
 
-class LikeController extends Controller
+
+class FavoriteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,9 +36,9 @@ class LikeController extends Controller
      */
     public function store(Post $post)
     {
-        $post->users()->attach(Auth::id());//いいね機能追加
-
-        return redirect()->route('posts.index');//いいね機能追加
+        // $post->users()->attach(Auth::id());
+        return redirect()->route('posts.index');
+    
     }
 
     /**
@@ -83,8 +83,8 @@ class LikeController extends Controller
      */
     public function destroy(Post $post)
     {
-        $post->users()->detach(Auth::id());//いいね機能追加
+        $post->users()->detach(Auth::id());
 
-        return redirect()->route('posts.index');//いいね機能追加
+        return redirect()->route('posts.index');
     }
 }

@@ -26,6 +26,7 @@ class PostController extends Controller
     
     public function create(Prefecture $prefecture)
     {
+        // dd($prefecture->get()); エラーの時使える
         return view('posts/create')->with(['prefectures' => $prefecture->get()]);
         
     }

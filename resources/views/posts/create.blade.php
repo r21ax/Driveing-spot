@@ -18,22 +18,26 @@
                 <input type="text" name="title" placeholder="場所" value="{{ old('post.title') }}"/>
             </div>
             
+            <!--都道府県選択-->
             <div class="prefecture">
                 <h2>都道府県</h2>
                 <div class="col-md-6 col-md-offset-3">
                  <select  name="prefecture_id">
                    @foreach($prefectures as $prefecture)
-                        <option value="{{ $prefecture->id }}">{{ $prefecture->name }}</option>
+                        <option value="{{ $prefecture->id }}">{{ $prefecture->prefecture }}</option>
                    @endforeach    
                  </select>
                 </div>
             </div>
+            <!--住所入力-->
             <div class="address">
                 <input type="text"  id="addressInput" placeholder="住所"/>
             </div>
-
-            <input type="file" name="image">
-            
+　　　　　　<!--写真投稿-->
+　　　　　　<div class="image">
+　　　　　　 <h3>写真投稿</h3>
+             <input type="file" name="image">
+            </div>
             <div class="body">
                <h2>コメント</h2>
                 <textarea name="comment" placeholder="コメント">{{ old('comment') }}</textarea>

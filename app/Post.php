@@ -26,7 +26,7 @@ class Post extends Model
         return $this->belongsTo('App\Prefecture');
     }
     
-    public function likes()//いいね機能
+    public function users()//いいね機能
     {
         return $this->belongsToMany('App\User')->withTimestamps();
     }
