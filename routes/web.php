@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -25,9 +26,8 @@ Route::get('/prefectures/{prefecture}', 'PrefectureController@index');
 
 Route::get('result', 'ResultController@currentLocation')->name('result.currentLocation');
 
-
-Route::post('posts/{post}/likes', 'LikeController@store')->name('likes');
-Route::post('posts/{post}/unlikes', 'LikeController@destroy')->name('unlikes');
+Route::post('posts/{post}/favorites', 'FavoriteController@store')->name('favorites');
+Route::post('posts/{post}/unfavorites', 'FavoriteController@destroy')->name('unfavorites');
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
